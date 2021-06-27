@@ -15,8 +15,8 @@ import javax.persistence.Table;
 import com.krakenforce.app.enums.Status;
 
 @Entity
-@Table(name = "user_role")
-public class UserRole {
+@Table(name = "seat_class")
+public class SeatClass {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +25,14 @@ public class UserRole {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "surcharge_percentage")
+	private int surchargePercentage;
+	
 	@Column(name = "active")
 	private Status active;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-	private Set<UserInfo> userInfos = new HashSet<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "seatClass")
+	private Set<Seat> seats = new HashSet<>();
 
 	public int getId() {
 		return id;
@@ -47,6 +50,14 @@ public class UserRole {
 		this.name = name;
 	}
 
+	public int getSurchargePercentage() {
+		return surchargePercentage;
+	}
+
+	public void setSurchargePercentage(int surchargePercentage) {
+		this.surchargePercentage = surchargePercentage;
+	}
+
 	public Status getActive() {
 		return active;
 	}
@@ -55,14 +66,13 @@ public class UserRole {
 		this.active = active;
 	}
 
-	public Set<UserInfo> getUserInfos() {
-		return userInfos;
+	public Set<Seat> getSeats() {
+		return seats;
 	}
 
-	public void setUserInfos(Set<UserInfo> userInfos) {
-		this.userInfos = userInfos;
+	public void setSeats(Set<Seat> seats) {
+		this.seats = seats;
 	}
-	
 	
 	
 }

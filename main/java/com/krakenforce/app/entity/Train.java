@@ -15,8 +15,8 @@ import javax.persistence.Table;
 import com.krakenforce.app.enums.Status;
 
 @Entity
-@Table(name = "user_role")
-public class UserRole {
+@Table(name = "train")
+public class Train {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +28,11 @@ public class UserRole {
 	@Column(name = "active")
 	private Status active;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-	private Set<UserInfo> userInfos = new HashSet<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "train")
+	private Set<Carriage> carriages = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "train")
+	private Set<Route> routes = new HashSet<>();
 
 	public int getId() {
 		return id;
@@ -55,14 +58,21 @@ public class UserRole {
 		this.active = active;
 	}
 
-	public Set<UserInfo> getUserInfos() {
-		return userInfos;
+	public Set<Carriage> getCarriages() {
+		return carriages;
 	}
 
-	public void setUserInfos(Set<UserInfo> userInfos) {
-		this.userInfos = userInfos;
+	public void setCarriages(Set<Carriage> carriages) {
+		this.carriages = carriages;
 	}
-	
+
+	public Set<Route> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(Set<Route> routes) {
+		this.routes = routes;
+	}
 	
 	
 }
