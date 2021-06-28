@@ -3,8 +3,6 @@ package com.krakenforce.app.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,8 +15,7 @@ import com.krakenforce.app.enums.Status;
 public class Ticket {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private String id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "booking_id", nullable = false)
@@ -30,11 +27,11 @@ public class Ticket {
 	@Column(name = "active")
 	private Status active;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
